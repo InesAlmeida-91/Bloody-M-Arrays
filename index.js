@@ -1,52 +1,85 @@
 window.onload = () => {
     document.getElementById('start-button').onclick = () => {
-        startGame()        
+        startGame()  
     };
   }
 
-const canvas = document.getElementById('canvas');
-const ctx = canvas.getContext('2d');
-
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  
   function startGame() {
     const instructionsContainer = document.getElementById('instructions-cointainer')
     instructionsContainer.style.display = "none";
+    document.body.insertBefore(canvas, document.body.childNodes[0]);
     background();
-    player.draw();
+    //player.draw();
+    requestAnimationFrame(updateCanvas);
   }
-  
 
-  function background() {
-    const beachBackground = new Image(); // Create new <img> element
-    beachBackground.src = './images/game_background_3.png'; // Set source path
-    ctx.drawImage(beachBackground, 0, 0, 1500, 1000);
-  }
-  
-
-class player {
+  class person {
     constructor() {
-      this.x = 225;//starting posisiton x
-      this.y = 575;//starting posisiton y
-      this.width = 50;//img size
-      this.height = 100;// img size
+      this.x = 10;//starting posisiton x
+      this.y = 10;//starting posisiton y
+      this.width = 75;//img size
+      this.height = 150;// img size
       const img = new Image();
       this.img = img;
-      img.src = './images/person.png'
+      img.onload = () => {
+        this.draw();
+      };
+      img.src = './images/person.png';
       this.speedX = 0;
     }
     draw() {
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
     moveLeft() {
-      return this.x;
+      this.x -= 10;
     }
     moveRight() {
-      return this.x + this.width;
+      this.x += 10;
     }
     newPos() { // updating the position of the player
       this.x += this.speedX;
     }
     update() {
-      const ctx = updateCanvas()
       ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
     }
   }
+  
+  const player = new person();
+
+
+ /* document.addEventListener('keydown', e => {
+    switch (e.keyCode) {
+      case 37:
+        player.moveLeft();
+        break;
+      case 39:
+        player.moveRight();
+        break;
+    }
+    updateCanvas();
+  });*/
+
+   
+  function background() {
+    const beachBackground = new Image(); // Create new <img> element
+    beachBackground.src = './images/game_background_3.png'; // Set source path
+    beachBackground.onload = function() { // Wait for image to load
+      ctx.drawImage(beachBackground, 0, 0, 1500, 800);
+    };
+  }
+  
+  
+
+  function updateCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    background()
+    player.newPos();
+    player.update();
+  }
+
+
+ 
+  
