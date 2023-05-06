@@ -52,11 +52,11 @@ class Person {
   }
   
   moveLeft() {
-    this.x -= 10;
+    this.x -= 20;
   }
   
   moveRight() {
-    this.x += 10;
+    this.x += 20;
   }
   
   newPos() {
@@ -84,11 +84,11 @@ document.addEventListener('keydown', (e) => {
 });
 
 class CorrectIngredient {
-  constructor(width, height, x, y, src, speed) {
+  constructor(width, height, src, speed) {
     this.width = width;
     this.height = height;
-    this.x = x;
-    this.y = y;
+    this.x = Math.floor(Math.random() * (1450 - this.width));
+    this.y = 0;
     this.speed = speed;
     this.img = new Image();
     this.img.src = src;
@@ -97,13 +97,19 @@ class CorrectIngredient {
   update() {
     const ctx = myGameArea.context;
     this.y += this.speed;
+    if (this.y > myGameArea.canvas.height) {
+      this.x = Math.floor(Math.random() * (myGameArea.canvas.width - this.width));
+      this.y = 0;
+    }
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 }
 
-const tomato = new CorrectIngredient(30, 30, 10, 0, './images/tomato.png', 10);
-const vodka = new CorrectIngredient(30, 30, 100, 0, './images/vodka.png', 8);
-const tabasco = new CorrectIngredient(30, 30, 200, 0, './images/tabasco.png', 5);
+const tomato = new CorrectIngredient(75, 75, './images/tomato.png', 1);
+const vodka = new CorrectIngredient(120, 120, './images/vodka.png', 2);
+const tabasco = new CorrectIngredient(100, 100, './images/tabasco.png', 3);
+const saltPepper = new CorrectIngredient(75, 75, './images/salt-and-pepper.png', 4);
+const lemon = new CorrectIngredient(100, 100, './images/lemon.jpg',5);
 
 function updateGameArea() {
   myGameArea.clear();
@@ -113,6 +119,8 @@ function updateGameArea() {
   tomato.update();
   vodka.update();
   tabasco.update();
+  saltPepper.update();
+  lemon.update();
 }
 
 myGameArea.start();
