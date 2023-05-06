@@ -17,11 +17,6 @@ const myGameArea = {
     this.canvas.width = 1450;
     this.canvas.height = 700;
     this.context = this.canvas.getContext('2d');
-    const instructionsContainer = document.getElementById('instructions-cointainer')
-    instructionsContainer.style.display = "none";
-    this.canvas.style.display = "block";
-    document.body.insertBefore(this.canvas, document.body.childNodes[0]);
-    this.interval = setInterval(updateGameArea, 20);
   },
   clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -121,3 +116,47 @@ function updateGameArea() {
 }
 
 myGameArea.start();
+
+const glass = new Image()
+glass.src = './images/empty-glass.png'
+const glass1 = new Image()
+glass1.src = './images/glass1.png'
+const glass2 = new Image()
+glass2.src = './images/glass2.png'
+const glass3 = new Image()
+glass3.src = './images/glass3.png'
+const glass4 = new Image()
+glass4.src = './images/glass4.png'
+const glass5 = new Image()
+glass5.src = './images/glass5.png'
+const glass6 = new Image()
+glass6.src = './images/glass6.png'
+
+function drawGlass() {
+  ctx.drawImage(baseBackground, 0,0,550, rocketCanvas.height);
+
+  ctx.drawImage(launchBase,50,200,150,150);
+
+  ctx.drawImage(baseHangar,160,180,150,150);
+
+  ctx.drawImage(baseDish,-50,130,200,200);
+
+  if(constructionLevel >= 1){
+      ctx.drawImage(rocketOne,75,230,100,100)
+  };
+
+  if(constructionLevel >= 2){
+  ctx.drawImage(rocketFins,75,210,100,100)
+  };
+
+  if(constructionLevel >= 3){
+  ctx.drawImage(rocketFuel,75,200,100,100)};
+
+
+  if(constructionLevel >= 4){
+  ctx.drawImage(rocketSides,75,195,100,100)};
+
+
+  if(constructionLevel >= 5){
+  ctx.drawImage(rocketTop,75,180,100,100)};
+}
