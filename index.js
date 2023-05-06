@@ -26,9 +26,13 @@ const myGameArea = {
 const beachBackground = new Image();
 beachBackground.src = './images/game_background_3.png';
 
+const ingredientsList = new Image
+ingredientsList.src = './images/display ingredients.png'
+
 function drawBackground() {
   const ctx = myGameArea.context;
   ctx.drawImage(beachBackground, 0, 0, 1450, 700);
+  ctx.drawImage(ingredientsList, 1200, 10, 150, 150);
 }
 
 class Person {
@@ -169,7 +173,7 @@ const glass6 = new Image()
 glass6.src = './images/glass6.png'
 
 function drawGlass(ctx) {
-    ctx.drawImage(glass, 1300, 10, 100, 150);
+    ctx.drawImage(glass, 1350, 10, 75, 150);
 //draw glass when player touch the correct ingredients
     /*if(plays touch CorrectIngredient draw glass)
     ctx.drawImage(glass1, 1300, 10, 100, 150);
@@ -180,7 +184,7 @@ function drawGlass(ctx) {
     ctx.drawImage(glass6, 1300, 10, 100, 150);*/
     //create if condition to change the img glass
   } 
-
+  
 myGameArea.start();
 
 
