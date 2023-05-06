@@ -105,11 +105,37 @@ class CorrectIngredient {
   }
 }
 
-const tomato = new CorrectIngredient(75, 75, './images/tomato.png', 1);
-const vodka = new CorrectIngredient(120, 120, './images/vodka.png', 2);
-const tabasco = new CorrectIngredient(100, 100, './images/tabasco.png', 3);
-const saltPepper = new CorrectIngredient(75, 75, './images/salt-and-pepper.png', 4);
-const lemon = new CorrectIngredient(100, 100, './images/lemon.jpg',5);
+const tomato = new CorrectIngredient(40, 40, './images/tomato.png', 1);
+const vodka = new CorrectIngredient(60, 60, './images/vodka.png', 2);
+const tabasco = new CorrectIngredient(50, 50, './images/tabasco.png', 3);
+const saltPepper = new CorrectIngredient(40, 40, './images/salt-and-pepper.png', 4);
+const lemon = new CorrectIngredient(50, 50, './images/lemon.png',5);
+
+
+class IncorrectIngredient {
+  constructor(width, height, src, speed) {
+    this.width = width;
+    this.height = height;
+    this.x = Math.floor(Math.random() * (1450 - this.width));
+    this.y = 0;
+    this.speed = speed;
+    this.img = new Image();
+    this.img.src = src;
+  }
+
+  update() {
+    const ctx = myGameArea.context;
+    this.y += this.speed;
+    if (this.y > myGameArea.canvas.height) {
+      this.x = Math.floor(Math.random() * (myGameArea.canvas.width - this.width));
+      this.y = 0;
+    }
+    ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+}
+
+const orange = new IncorrectIngredient(55, 40, './images/orange.png', 1);
+const strawberry = new IncorrectIngredient(50, 50, './images/strawberry.png', 3);
 
 function updateGameArea() {
   myGameArea.clear();
@@ -121,6 +147,8 @@ function updateGameArea() {
   tabasco.update();
   saltPepper.update();
   lemon.update();
+  orange.update();
+  strawberry.update();
 }
 
 myGameArea.start();
