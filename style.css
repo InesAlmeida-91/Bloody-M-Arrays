@@ -46,7 +46,7 @@ p {
     height: 75px;
   }
 
-#instructions-cointainer {
+#instructions-container {
     background-image: url(./images/background-instructions.jpg); 
     background-repeat: no-repeat;
     background-size: cover;
