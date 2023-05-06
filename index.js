@@ -105,19 +105,8 @@ const tomato = new CorrectIngredient(30, 30, 10, 0, './images/tomato.png', 10);
 const vodka = new CorrectIngredient(30, 30, 100, 0, './images/vodka.png', 8);
 const tabasco = new CorrectIngredient(30, 30, 200, 0, './images/tabasco.png', 5);
 
-function updateGameArea() {
-  myGameArea.clear();
-  drawBackground();
-  player.newPos();
-  player.update();
-  tomato.update();
-  vodka.update();
-  tabasco.update();
-}
 
-myGameArea.start();
-
-const glass = new Image()
+const glass = new Image
 glass.src = './images/empty-glass.png'
 const glass1 = new Image()
 glass1.src = './images/glass1.png'
@@ -132,31 +121,36 @@ glass5.src = './images/glass5.png'
 const glass6 = new Image()
 glass6.src = './images/glass6.png'
 
-function drawGlass() {
-  ctx.drawImage(baseBackground, 0,0,550, rocketCanvas.height);
-
-  ctx.drawImage(launchBase,50,200,150,150);
-
-  ctx.drawImage(baseHangar,160,180,150,150);
-
-  ctx.drawImage(baseDish,-50,130,200,200);
-
-  if(constructionLevel >= 1){
-      ctx.drawImage(rocketOne,75,230,100,100)
-  };
-
-  if(constructionLevel >= 2){
-  ctx.drawImage(rocketFins,75,210,100,100)
-  };
-
-  if(constructionLevel >= 3){
-  ctx.drawImage(rocketFuel,75,200,100,100)};
+function drawGlass(ctx) {
+    ctx.drawImage(glass, 1300, 10, 100, 150);
+//draw glass when player touch the correct ingredients
+    /*if(plays touch CorrectIngredient draw glass)
+    ctx.drawImage(glass1, 1300, 10, 100, 150);
+    ctx.drawImage(glass2, 1300, 10, 100, 150);
+    ctx.drawImage(glass3, 1300, 10, 100, 150);
+    ctx.drawImage(glass4, 1300, 10, 100, 150);
+    ctx.drawImage(glass5, 1300, 10, 100, 150);
+    ctx.drawImage(glass6, 1300, 10, 100, 150);*/
+    //create if condition to change the img glass
+  } 
 
 
-  if(constructionLevel >= 4){
-  ctx.drawImage(rocketSides,75,195,100,100)};
-
-
-  if(constructionLevel >= 5){
-  ctx.drawImage(rocketTop,75,180,100,100)};
+function updateGameArea() {
+  myGameArea.clear();
+  drawBackground();
+  player.newPos();
+  player.update();
+  tomato.update();
+  vodka.update();
+  tabasco.update();
+  drawGlass(myGameArea.context);
 }
+
+myGameArea.start();
+
+
+
+
+
+
+
