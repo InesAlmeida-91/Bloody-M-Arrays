@@ -81,13 +81,17 @@ class Person {
   }
   
   top() {
-    return this.y;
+    return this.y + 30;
   }
-  bottom() {
-    return this.y + this.height;
+  left() {
+    return this.x;
   }
+  right() {
+    return this.x + this.width;
+  }
+  
   crashWith(ingredient) {
-    return !(this.top() > ingredient.bottom() );
+    return this.top() < ingredient.bottom() && this.right() >= ingredient.x && this.left() <= ingredient.x + ingredient.width; ;
   }
 }
 
@@ -125,6 +129,9 @@ class CorrectIngredient {
       this.y = 0;
     }
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+  bottom() {
+    return this.y + this.height;
   }
 }
 
@@ -217,9 +224,9 @@ function checkGameOver() {
   }
 }
 
+
 //if game area stop - game over - restart game
 //colision with the correct ingredients
 //make the correct ingredients disapear after they hit the player
 //if the ingreddients are correct fill the glass
 //when glass6 win game
-
