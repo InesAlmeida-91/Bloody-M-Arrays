@@ -22,7 +22,7 @@ const myGameArea = {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
   },
   stop: function () {
-    clearInterval(this.interval);
+    clearInterval(myGameArea.interval);
   },
 };
 
@@ -78,12 +78,27 @@ class Person {
     const ctx = myGameArea.context;
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
+  top() {
+    return this.y;
+  }
   crashWith(incorrectIngredient) {
-    //if crach with orange || strawberry - gameover
+    return this.top() < incorrectIngredient.bottom();
   }
 }
 
 const player = new Person();
+
+function checkGameOver() {
+  const crashed = player.crashWith(orange) || player.crashWith(strawberry);
+
+  if (crashed) {
+    myGameArea.stop();
+  }
+}
+
+//make the correct ingredients disapear after they hit the player
+
+
 
 document.addEventListener('keydown', (e) => {
   switch (e.keyCode) {
@@ -146,19 +161,15 @@ class IncorrectIngredient {
     }
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
+  bottom() {
+    return this.y
+  }
 }
 
 const orange = new IncorrectIngredient(55, 40, './images/orange.png', 1);
 const strawberry = new IncorrectIngredient(50, 50, './images/strawberry.png', 3);
 
-/*function checkGameOver() {
-  const crashed = incorrect ingredients
-  });
- 
-  if (crashed) {
-    myGameArea.stop();
-  }
-}*/
+
 
 function updateGameArea() {
   myGameArea.clear();
