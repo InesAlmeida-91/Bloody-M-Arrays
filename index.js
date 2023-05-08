@@ -36,6 +36,7 @@ function drawBackground() {
   const ctx = myGameArea.context;
   ctx.drawImage(beachBackground, 0, 0, 1450, 700);
   ctx.drawImage(ingredientsList, 1200, 10, 150, 170);
+  ctx.drawImage(glass, 1350, 10, 75, 170);
 }
 
 class Person {
@@ -78,26 +79,19 @@ class Person {
     const ctx = myGameArea.context;
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
+  
   top() {
     return this.y;
   }
-  crashWith(incorrectIngredient) {
-    return this.top() < incorrectIngredient.bottom();
+  bottom() {
+    return this.y + this.height;
+  }
+  crashWith(ingredient) {
+    return !(this.top() > ingredient.bottom() );
   }
 }
 
 const player = new Person();
-
-function checkGameOver() {
-  const crashed = player.crashWith(orange) || player.crashWith(strawberry);
-
-  if (crashed) {
-    myGameArea.stop();
-  }
-}
-
-//make the correct ingredients disapear after they hit the player
-
 
 
 document.addEventListener('keydown', (e) => {
@@ -162,7 +156,7 @@ class IncorrectIngredient {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
   bottom() {
-    return this.y
+    return this.y + this.height;
   }
 }
 
@@ -183,10 +177,10 @@ function updateGameArea() {
   lemon.update();
   orange.update();
   strawberry.update();
-  drawGlass(myGameArea.context);
   checkGameOver();
 }
 
+myGameArea.start(); 
 
 const glass = new Image
 glass.src = './images/empty-glass.png'
@@ -203,24 +197,29 @@ glass5.src = './images/glass5.png'
 const glass6 = new Image()
 glass6.src = './images/glass6.png'
 
-function drawGlass(ctx) {
-    ctx.drawImage(glass, 1350, 10, 75, 170);
+//function drawGlass() {
 //draw glass when player touch the correct ingredients
-    /*if(plays touch CorrectIngredient draw glass)
-    ctx.drawImage(glass1, 1300, 10, 100, 150);
-    ctx.drawImage(glass2, 1300, 10, 100, 150);
-    ctx.drawImage(glass3, 1300, 10, 100, 150);
-    ctx.drawImage(glass4, 1300, 10, 100, 150);
-    ctx.drawImage(glass5, 1300, 10, 100, 150);
-    ctx.drawImage(glass6, 1300, 10, 100, 150);*/
+//      ctx.drawImage(glass1, 1350, 10, 75, 170);
+    /*ctx.drawImage(glass2, 1350, 10, 75, 170);
+    ctx.drawImage(glass3, 1350, 10, 75, 170);
+    ctx.drawImage(glass4, 1350, 10, 75, 170);
+    ctx.drawImage(glass5, 1350, 10, 75, 170);
+    ctx.drawImage(glass6, 1350, 10, 75, 170);*/
     //create if condition to change the img glass
-  } 
-  
-myGameArea.start();
+  //} 
 
 
 
 
+function checkGameOver() {
+  if(player.crashWith(orange) || player.crashWith(strawberry)) {
+    myGameArea.stop();
+  }
+}
 
-
+//if game area stop - game over - restart game
+//colision with the correct ingredients
+//make the correct ingredients disapear after they hit the player
+//if the ingreddients are correct fill the glass
+//when glass6 win game
 
