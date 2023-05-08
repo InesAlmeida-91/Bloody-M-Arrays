@@ -20,7 +20,10 @@ const myGameArea = {
   },
   clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-  }
+  },
+  stop: function () {
+    clearInterval(this.interval);
+  },
 };
 
 const beachBackground = new Image();
@@ -56,11 +59,15 @@ class Person {
   }
   
   moveLeft() {
+    if (this.x >= 0) {
     this.x -= 20;
+    }
   }
   
   moveRight() {
-    this.x += 20;
+    if(this.x <= 1350) {
+      this.x += 20;
+    }
   }
   
   newPos() {
@@ -70,6 +77,9 @@ class Person {
   update() {
     const ctx = myGameArea.context;
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+  }
+  crashWith(incorrectIngredient) {
+    //if crach with orange || strawberry - gameover
   }
 }
 
@@ -141,6 +151,15 @@ class IncorrectIngredient {
 const orange = new IncorrectIngredient(55, 40, './images/orange.png', 1);
 const strawberry = new IncorrectIngredient(50, 50, './images/strawberry.png', 3);
 
+/*function checkGameOver() {
+  const crashed = incorrect ingredients
+  });
+ 
+  if (crashed) {
+    myGameArea.stop();
+  }
+}*/
+
 function updateGameArea() {
   myGameArea.clear();
   drawBackground();
@@ -154,6 +173,7 @@ function updateGameArea() {
   orange.update();
   strawberry.update();
   drawGlass(myGameArea.context);
+  checkGameOver();
 }
 
 
