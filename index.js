@@ -13,6 +13,11 @@ function startGame() {
 
 const myGameArea = {
   canvas: document.createElement('canvas'),
+  scoreCountVodka: 0,
+  scoreCountTomato: 0,
+  scoreCountTabasco: 0,
+  scoreCountSaltPepper: 0,
+  scoreCountLemon: 0,
   start: function () {
     this.canvas.width = 1450;
     this.canvas.height = 700;
@@ -24,7 +29,19 @@ const myGameArea = {
   stop: function () {
     clearInterval(myGameArea.interval);
   },
-};
+  score: function () {
+    this.context.font = '18px serif';
+    this.context.fillStyle = 'black';
+    this.context.fillText(`Vodka: ${this.scoreCountVodka}`, 50, 50);
+    this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, 320, 50);
+    this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, 590, 50);
+    this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, 860, 50);
+    this.context.fillText(`Lemons: ${this.scoreCountLemon}`, 1130, 50);
+  },
+}
+
+
+
 
 const beachBackground = new Image();
 beachBackground.src = './images/game_background_3.png';
@@ -36,7 +53,6 @@ function drawBackground() {
   const ctx = myGameArea.context;
   ctx.drawImage(beachBackground, 0, 0, 1450, 700);
   ctx.drawImage(ingredientsList, 1200, 10, 150, 170);
-  ctx.drawImage(glass, 1350, 10, 75, 170);
 }
 
 class Person {
@@ -171,7 +187,6 @@ const orange = new IncorrectIngredient(55, 40, './images/orange.png', 1);
 const strawberry = new IncorrectIngredient(50, 50, './images/strawberry.png', 3);
 
 
-
 function updateGameArea() {
   myGameArea.clear();
   drawBackground();
@@ -185,38 +200,10 @@ function updateGameArea() {
   orange.update();
   strawberry.update();
   checkGameOver();
+  checkScore();
 }
 
 myGameArea.start(); 
-
-const glass = new Image
-glass.src = './images/empty-glass.png'
-const glass1 = new Image()
-glass1.src = './images/glass1.png'
-const glass2 = new Image()
-glass2.src = './images/glass2.png'
-const glass3 = new Image()
-glass3.src = './images/glass3.png'
-const glass4 = new Image()
-glass4.src = './images/glass4.png'
-const glass5 = new Image()
-glass5.src = './images/glass5.png'
-const glass6 = new Image()
-glass6.src = './images/glass6.png'
-
-//function drawGlass() {
-//draw glass when player touch the correct ingredients
-//      ctx.drawImage(glass1, 1350, 10, 75, 170);
-    /*ctx.drawImage(glass2, 1350, 10, 75, 170);
-    ctx.drawImage(glass3, 1350, 10, 75, 170);
-    ctx.drawImage(glass4, 1350, 10, 75, 170);
-    ctx.drawImage(glass5, 1350, 10, 75, 170);
-    ctx.drawImage(glass6, 1350, 10, 75, 170);*/
-    //create if condition to change the img glass
-  //} 
-
-
-
 
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
@@ -224,9 +211,20 @@ function checkGameOver() {
   }
 }
 
+function checkScore() {
+  if(player.crashWith(vodka)) {
+    myGameArea.scoreCountVodka++;
+  }else if(player.crashWith(tomato)){
+    myGameArea.scoreCountTomato++;
+  }else if(player.crashWith(tabasco)){
+    myGameArea.scoreCountTabasco++;
+  }else if(player.crashWith(saltPepper)){
+      myGameArea.scoreCountSaltPepper++;
+  }else if(player.crashWith(lemon)){
+    myGameArea.scoreCountLemon++;
+  }
+}
 
 //if game area stop - game over - restart game
-//colision with the correct ingredients
 //make the correct ingredients disapear after they hit the player
-//if the ingreddients are correct fill the glass
-//when glass6 win game
+//when have all ingredients win game
