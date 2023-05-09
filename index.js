@@ -239,6 +239,7 @@ document.getElementById('restart-button').addEventListener('click', () => {
   location.reload();
 });
 
+
 function checkScore() {
   if(player.crashWith(vodka)) {
     myGameArea.scoreCountVodka++;
