@@ -225,7 +225,7 @@ function updateGameArea() {
   checkGameOver();
 }
 
-myGameArea.start(); 
+
 
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
@@ -235,6 +235,9 @@ function checkGameOver() {
   }
 }
 
+document.getElementById('restart-button').addEventListener('click', () => {
+  location.reload();
+});
 
 function checkScore() {
   if(player.crashWith(vodka)) {
@@ -249,3 +252,6 @@ function checkScore() {
     myGameArea.scoreCountLemon++;
   }
 }
+
+
+myGameArea.start(); 
