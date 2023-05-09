@@ -13,10 +13,16 @@ function startGame() {
 
 const myGameArea = {
   canvas: document.createElement('canvas'),
+  scoreCountVodka: 0,
+  scoreCountTomato: 0,
+  scoreCountTabasco: 0,
+  scoreCountSaltPepper: 0,
+  scoreCountLemon: 0,
   start: function () {
     this.canvas.width = 1450;
     this.canvas.height = 700;
     this.context = this.canvas.getContext('2d');
+    gameOverScreen.style.display = "none";
   },
   clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -24,7 +30,34 @@ const myGameArea = {
   stop: function () {
     clearInterval(myGameArea.interval);
   },
+  score: function() {
+    this.context.font = '30px Sigmar';
+    this.context.shadowOffsetX = 3;
+    this.context.shadowOffsetY = 3;
+    this.context.shadowBlur = 2;
+    this.context.shadowColor = 'rgba(0, 0, 0, 0.864)';
+    const rectX = 5;
+    const rectY = 5;
+    const rectWidth = 260;
+    const rectHeight = 250;
+    
+    this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    this.context.fillRect(rectX, rectY, rectWidth, rectHeight);
+  
+    // Set the fill color for the text
+    this.context.fillStyle = '#ff8585';
+  
+    this.context.fillText(`Vodka: ${this.scoreCountVodka}`, rectX + 10, rectY + 30);
+    this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, rectX + 10, rectY + 80);
+    this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
+    this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 180);
+    this.context.fillText(`Lemons: ${this.scoreCountLemon}`, rectX + 10, rectY + 230);
+  }
+
 };
+
+
+
 
 const beachBackground = new Image();
 beachBackground.src = './images/game_background_3.png';
@@ -36,7 +69,6 @@ function drawBackground() {
   const ctx = myGameArea.context;
   ctx.drawImage(beachBackground, 0, 0, 1450, 700);
   ctx.drawImage(ingredientsList, 1200, 10, 150, 170);
-  ctx.drawImage(glass, 1350, 10, 75, 170);
 }
 
 class Person {
@@ -91,7 +123,8 @@ class Person {
   }
   
   crashWith(ingredient) {
-    return this.top() < ingredient.bottom() && this.right() >= ingredient.x && this.left() <= ingredient.x + ingredient.width; ;
+    return (this.top() < ingredient.bottom() && this.right() >= ingredient.x && this.left() <= ingredient.x + ingredient.width
+    );
   }
 }
 
@@ -170,7 +203,9 @@ class IncorrectIngredient {
 const orange = new IncorrectIngredient(55, 40, './images/orange.png', 1);
 const strawberry = new IncorrectIngredient(50, 50, './images/strawberry.png', 3);
 
+
 let gameStatus = "Playing";
+
 
 function updateGameArea() {
   if (gameStatus === "Playing") {
@@ -185,44 +220,32 @@ function updateGameArea() {
   lemon.update();
   orange.update();
   strawberry.update();
+  myGameArea.score();
   }
   checkGameOver();
 }
 
 myGameArea.start(); 
 
-const glass = new Image
-glass.src = './images/empty-glass.png'
-const glass1 = new Image()
-glass1.src = './images/glass1.png'
-const glass2 = new Image()
-glass2.src = './images/glass2.png'
-const glass3 = new Image()
-glass3.src = './images/glass3.png'
-const glass4 = new Image()
-glass4.src = './images/glass4.png'
-const glass5 = new Image()
-glass5.src = './images/glass5.png'
-const glass6 = new Image()
-glass6.src = './images/glass6.png'
-
-//function drawGlass() {
-//draw glass when player touch the correct ingredients
-//      ctx.drawImage(glass1, 1350, 10, 75, 170);
-    /*ctx.drawImage(glass2, 1350, 10, 75, 170);
-    ctx.drawImage(glass3, 1350, 10, 75, 170);
-    ctx.drawImage(glass4, 1350, 10, 75, 170);
-    ctx.drawImage(glass5, 1350, 10, 75, 170);
-    ctx.drawImage(glass6, 1350, 10, 75, 170);*/
-    //create if condition to change the img glass
-  //} 
-
-
-
-
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
     gameStatus = "Game Over";
     myGameArea.stop();
+    document.getElementById("game-over-container").style.display = "flex";
+  }
+}
+
+
+function checkScore() {
+  if(player.crashWith(vodka)) {
+    myGameArea.scoreCountVodka++;
+  }else if(player.crashWith(tomato)){
+    myGameArea.scoreCountTomato++;
+  }else if(player.crashWith(tabasco)){
+    myGameArea.scoreCountTabasco++;
+  }else if(player.crashWith(saltPepper)){
+      myGameArea.scoreCountSaltPepper++;
+  }else if(player.crashWith(lemon)){
+    myGameArea.scoreCountLemon++;
   }
 }

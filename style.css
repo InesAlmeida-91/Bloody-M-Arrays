@@ -83,7 +83,7 @@ p {
   }
 
   #restart-button {
-    width: 16%;
+    width: 50%;
     height: 70px;
     border-radius: 30px; 
     margin: 30px auto; /* add some margin to the button */
@@ -98,6 +98,22 @@ p {
   }
 
   #restart-button:hover {
-    background-color: #f15b5b; 
+    background-color: #f15b5b;
 }
 
+#game-over-container {
+    background-color: rgba(255, 255, 255, 0.85); 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  #game-over-screen {
+    text-align: center;
+  }
+  
