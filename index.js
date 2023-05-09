@@ -187,7 +187,11 @@ const orange = new IncorrectIngredient(55, 40, './images/orange.png', 1);
 const strawberry = new IncorrectIngredient(50, 50, './images/strawberry.png', 3);
 
 
+let gameStatus = "Playing";
+
+
 function updateGameArea() {
+  if (gameStatus === "Playing") {
   myGameArea.clear();
   drawBackground();
   player.newPos();
@@ -199,6 +203,7 @@ function updateGameArea() {
   lemon.update();
   orange.update();
   strawberry.update();
+  }
   checkGameOver();
   checkScore();
 }
@@ -207,9 +212,11 @@ myGameArea.start();
 
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
+    gameStatus = "Game Over";
     myGameArea.stop();
   }
 }
+
 
 function checkScore() {
   if(player.crashWith(vodka)) {
@@ -225,6 +232,4 @@ function checkScore() {
   }
 }
 
-//if game area stop - game over - restart game
-//make the correct ingredients disapear after they hit the player
-//when have all ingredients win game
+
