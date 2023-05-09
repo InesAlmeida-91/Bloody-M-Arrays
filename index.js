@@ -29,16 +29,31 @@ const myGameArea = {
   stop: function () {
     clearInterval(myGameArea.interval);
   },
-  score: function () {
-    this.context.font = '18px serif';
-    this.context.fillStyle = 'black';
-    this.context.fillText(`Vodka: ${this.scoreCountVodka}`, 50, 50);
-    this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, 320, 50);
-    this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, 590, 50);
-    this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, 860, 50);
-    this.context.fillText(`Lemons: ${this.scoreCountLemon}`, 1130, 50);
-  },
-}
+  score: function() {
+    this.context.font = '30px Sigmar';
+    this.context.shadowOffsetX = 3;
+    this.context.shadowOffsetY = 3;
+    this.context.shadowBlur = 2;
+    this.context.shadowColor = 'rgba(0, 0, 0, 0.864)';
+    const rectX = 5;
+    const rectY = 5;
+    const rectWidth = 260;
+    const rectHeight = 250;
+    
+    this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
+    this.context.fillRect(rectX, rectY, rectWidth, rectHeight);
+  
+    // Set the fill color for the text
+    this.context.fillStyle = '#ff8585';
+  
+    this.context.fillText(`Vodka: ${this.scoreCountVodka}`, rectX + 10, rectY + 30);
+    this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, rectX + 10, rectY + 80);
+    this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
+    this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 180);
+    this.context.fillText(`Lemons: ${this.scoreCountLemon}`, rectX + 10, rectY + 230);
+  }
+
+};
 
 
 
@@ -107,7 +122,8 @@ class Person {
   }
   
   crashWith(ingredient) {
-    return this.top() < ingredient.bottom() && this.right() >= ingredient.x && this.left() <= ingredient.x + ingredient.width; ;
+    return (this.top() < ingredient.bottom() && this.right() >= ingredient.x && this.left() <= ingredient.x + ingredient.width
+    );
   }
 }
 
@@ -205,7 +221,7 @@ function updateGameArea() {
   strawberry.update();
   }
   checkGameOver();
-  checkScore();
+  myGameArea.score();
 }
 
 myGameArea.start(); 
