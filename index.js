@@ -306,6 +306,9 @@ document.getElementById('restart-button').addEventListener('click', () => {
   location.reload();
 });
 
+document.getElementById('play-again-button').addEventListener('click', () => {
+  location.reload();
+});
 
 myGameArea.start(); 
 
