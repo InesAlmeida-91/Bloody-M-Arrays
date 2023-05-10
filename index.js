@@ -30,28 +30,31 @@ const myGameArea = {
     clearInterval(myGameArea.interval);
   },
   score: function() {
-    this.context.font = '30px Sigmar';
+    this.context.font = '20px Sigmar';
     this.context.shadowOffsetX = 3;
     this.context.shadowOffsetY = 3;
     this.context.shadowBlur = 2;
     this.context.shadowColor = 'rgba(0, 0, 0, 0.864)';
     const rectX = 5;
     const rectY = 5;
-    const rectWidth = 260;
-    const rectHeight = 300;
+    const rectWidth = 200;
+    const rectHeight = 200;
     
     this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
     this.context.fillRect(rectX, rectY, rectWidth, rectHeight);
   
-    // Set the fill color for the text
-    this.context.fillStyle = '#ff8585';
+   
+     // Set the fill color for the text
+    this.context.fillStyle = 'white';
+    this.context.fillText(`Ingredients:`, rectX + 10, rectY + 30);
 
-    this.context.fillText(`Ingredients:`, rectX + 10, rectY + 30); //change color
-    this.context.fillText(`Vodka ${this.scoreCountVodka}`, rectX + 10, rectY + 80);
-    this.context.fillText(`Tomatoes ${this.scoreCountTomato}`, rectX + 10, rectY + 130);
-    this.context.fillText(`Tabasco ${this.scoreCountTabasco}`, rectX + 10, rectY + 180);
-    this.context.fillText(`Salt&Pepper ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 230);
-    this.context.fillText(`Lemons ${this.scoreCountLemon}`, rectX + 10, rectY + 280);
+     // Set the fill color for the text
+    this.context.fillStyle = '#ff8585';
+    this.context.fillText(`Vodka ${this.scoreCountVodka}`, rectX + 10, rectY + 70);
+    this.context.fillText(`Tomatoes ${this.scoreCountTomato}`, rectX + 10, rectY + 100);
+    this.context.fillText(`Tabasco ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
+    this.context.fillText(`Salt&Pepper ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 160);
+    this.context.fillText(`Lemons ${this.scoreCountLemon}`, rectX + 10, rectY + 190);
   }
 
 };
@@ -62,14 +65,11 @@ const myGameArea = {
 const beachBackground = new Image();
 beachBackground.src = './images/game_background_3.png';
 
-const ingredientsList = new Image
-ingredientsList.src = './images/display-ingredients.png'
 
 function drawBackground() {
   const ctx = myGameArea.context;
   ctx.drawImage(beachBackground, 0, 0, 1450, 700);
-  ctx.drawImage(ingredientsList, 1200, 10, 150, 170);
-}
+ }
 
 class Person {
   constructor() {
@@ -209,52 +209,55 @@ let gameStatus = "Playing";
 
 function updateGameArea() {
   if (gameStatus === "Playing") {
-  myGameArea.clear();
-  drawBackground();
-  player.newPos();
-  player.update();
-  tomato.update();
-  vodka.update();
-  tabasco.update();
-  saltPepper.update();
-  lemon.update();
-  orange.update();
-  strawberry.update();
-  myGameArea.score();
+    myGameArea.clear();
+    drawBackground();
+    player.newPos();
+    player.update();
+    tomato.update();
+    vodka.update();
+    tabasco.update();
+    saltPepper.update();
+    lemon.update();
+    orange.update();
+    strawberry.update();
+    myGameArea.score();
+     checkScore();
   }
   checkGameOver();
-  myGameArea.score();
 }
 
-
+function checkScore() {
+  if (player.crashWith(vodka) && vodka.y > 0) { //ingredient.y vertical position of the image 
+    myGameArea.scoreCountVodka++;//increase the score
+    vodka.y = 0; //return ingredient to the initial position
+  } else if (player.crashWith(tomato) && tomato.y > 0) {
+    myGameArea.scoreCountTomato++;
+    tomato.y = 0;
+  } else if (player.crashWith(tabasco) && tabasco.y > 0) {
+    myGameArea.scoreCountTabasco++;
+    tabasco.y = 0;
+  } else if (player.crashWith(saltPepper) && saltPepper.y > 0) {
+    myGameArea.scoreCountSaltPepper++;
+    saltPepper.y = 0;
+  } else if (player.crashWith(lemon) && lemon.y > 0) {
+    myGameArea.scoreCountLemon++;
+    lemon.y = 0;
+  }
+}
 
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
     gameStatus = "Game Over";
     myGameArea.stop();
     document.getElementById("game-over-container").style.display = "flex";
+  } else {
+    checkScore();
   }
 }
 
 document.getElementById('restart-button').addEventListener('click', () => {
   location.reload();
 });
-
-
-function checkScore() {
-  if(player.crashWith(vodka)) {
-    myGameArea.scoreCountVodka++;
-  }else if(player.crashWith(tomato)){
-    myGameArea.scoreCountTomato++;
-  }else if(player.crashWith(tabasco)){
-    myGameArea.scoreCountTabasco++;
-  }else if(player.crashWith(saltPepper)){
-      myGameArea.scoreCountSaltPepper++;
-  }else if(player.crashWith(lemon)){
-    myGameArea.scoreCountLemon++;
-  }
-}
-
 
 
 myGameArea.start(); 
