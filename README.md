@@ -1,6 +1,6 @@
-BLOODY-M-ARRAYS
+# BLOODY-M-ARRAYS
 
-Click here to see deployed game
+[Click here to see deployed game]
 
 Description:
 Brief description of the project
