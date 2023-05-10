@@ -60,11 +60,11 @@ const myGameArea = {
 
      // Set the fill color for the text
     this.context.fillStyle = '#ff8585';
-    this.context.fillText(`Vodka ${this.scoreCountVodka}`, rectX + 10, rectY + 70);
-    this.context.fillText(`Tomatoes ${this.scoreCountTomato}`, rectX + 10, rectY + 100);
-    this.context.fillText(`Tabasco ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
-    this.context.fillText(`Salt&Pepper ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 160);
-    this.context.fillText(`Lemons ${this.scoreCountLemon}`, rectX + 10, rectY + 190);
+    this.context.fillText(`Vodka: ${this.scoreCountVodka}`, rectX + 10, rectY + 70);
+    this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, rectX + 10, rectY + 100);
+    this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
+    this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 160);
+    this.context.fillText(`Lemons: ${this.scoreCountLemon}`, rectX + 10, rectY + 190);
   }
 
 };
@@ -178,7 +178,7 @@ class CorrectIngredient {
   }
 }
 
-const tomato = new CorrectIngredient(40, 40, './images/tomato.png', 1);
+const tomato = new CorrectIngredient(40, 40, './images/tomato.png', 2);
 const vodka = new CorrectIngredient(60, 60, './images/vodka.png', 2);
 const tabasco = new CorrectIngredient(50, 50, './images/tabasco.png', 3);
 const saltPepper = new CorrectIngredient(40, 40, './images/salt-and-pepper.png', 4);
@@ -234,6 +234,7 @@ function updateGameArea() {
      checkScore();
   }
   checkGameOver();
+  checkWin();
 }
 
 const collisionAudio = new Audio;
@@ -278,6 +279,28 @@ function checkGameOver() {
     checkScore();
   }
 }
+
+const winningSound = new Audio;
+winningSound.src = './audio/winning-cheering.wav';
+
+function checkWin() {
+  if(
+    myGameArea.scoreCountVodka >= 2 &&
+    myGameArea.scoreCountTomato >= 4 &&
+    myGameArea.scoreCountTabasco >= 3 &&
+    myGameArea.scoreCountLemon >= 1 &&
+    myGameArea.scoreCountSaltPepper >= 1 
+    ) {
+    gameStatus = "Win Game";
+    myGameArea.stop();
+    gameAudio.pause();
+    winningSound.play();
+    document.getElementById("win-container").style.display = "flex";
+  } else {
+    checkScore();
+  }
+}
+
 
 document.getElementById('restart-button').addEventListener('click', () => {
   location.reload();
