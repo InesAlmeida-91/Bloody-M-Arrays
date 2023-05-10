@@ -24,20 +24,20 @@ h4 {
 
 hr {
     color: black;
-    border: 2px solid #ffbdbd; /* add a border to the horizontal rule */
-    margin: 30px auto; /* add some margin to make the horizontal rule look more centered */
+    border: 2px solid #ffbdbd; 
+    margin: 30px auto; 
 }
 
 #start-button {
     width: 16%;
     height: 70px;
     border-radius: 30px; 
-    margin: 30px auto; /* add some margin to the button */
+    margin: 30px auto; 
     display: block;
     font-size: 30px;
     color: white;
     text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.864);
-    background-color: #ff8585; /* change the button color to a brighter shade of red */
+    background-color: #ff8585; 
     cursor: pointer;
     transition: background-color 0.2s ease-in-out; 
     font-family: 'Sigmar';
@@ -64,7 +64,7 @@ p {
 #title-glass > img {
     width: 75px;
     height: 100px;
-    margin: 0 20px; /* added some margin to the glass images */
+    margin: 0 20px; 
 }
 
 #instructions-container {
@@ -86,7 +86,7 @@ p {
     width: 50%;
     height: 70px;
     border-radius: 30px; 
-    margin: 30px auto; /* add some margin to the button */
+    margin: 30px auto; 
     display: block;
     font-size: 30px;
     color: white;
@@ -116,4 +116,37 @@ p {
   #game-over-screen {
     text-align: center;
   }
+
+#win-container {
+    background-color: rgba(255, 255, 255, 0.85); 
+    position: absolute;
+    top: 4%;
+    left: 150px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #win-screen {
+    text-align: center;
+  }
   
+#play-again-button {
+    width: 50%;
+    height: 70px;
+    border-radius: 30px; 
+    margin: 30px auto; 
+    display: block;
+    font-size: 30px;
+    color: white;
+    text-shadow: 3px 3px 2px rgba(0, 0, 0, 0.864);
+    background-color: #ff8585; 
+    transition: background-color 0.2s ease-in-out; 
+    font-family: 'Sigmar';
+  }
+
+  #play-again-button:hover {
+    background-color: #f15b5b;
+}
