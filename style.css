@@ -116,4 +116,20 @@ p {
   #game-over-screen {
     text-align: center;
   }
+
+#win-container {
+    background-color: rgba(255, 255, 255, 0.85); 
+    position: absolute;
+    top: 70px;
+    left: 150px;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #win-screen {
+    text-align: center;
+  }
   
