@@ -35,5 +35,5 @@ class CorrectIngredient and class IncorrectIngredient with the  update() and bot
 ## Links
 - [Trello Link](https://trello.com/b/mKUR0mgp/bloody-m-arrays)
 - [Slides Link](http://slides.com)
-- [Github repository Link](https://github.com/InesAlmeida-91/Bloody-M-Arrays.git)
+- [Github repository Link](https://github.com/InesAlmeida-91/Bloody-M-Arrays)
 - [Deployment Link](http://github.com)
