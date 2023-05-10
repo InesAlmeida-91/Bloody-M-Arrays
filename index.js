@@ -1,8 +1,18 @@
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
-      startGame()  
+    startAudio.pause();
+    gameAudio.play();
+    startGame()  
   };
 }
+
+const startAudio = new Audio;
+startAudio.src = './audio/fisrt-screen-sound.wav';
+
+const gameAudio = new Audio;
+gameAudio.src = './audio/game-music.mp3'
+
+startAudio.play();
 
 function startGame() {
   const instructionsContainer = document.getElementById('instructions-container')
@@ -226,29 +236,43 @@ function updateGameArea() {
   checkGameOver();
 }
 
+const collisionAudio = new Audio;
+collisionAudio.src = './audio/ingredient-collision.wav';
+
 function checkScore() {
-  if (player.crashWith(vodka) && vodka.y > 0) { //ingredient.y vertical position of the image 
+  if (player.crashWith(vodka) && vodka.y > 0) { 
+    collisionAudio.play()//ingredient.y vertical position of the image 
     myGameArea.scoreCountVodka++;//increase the score
     vodka.y = 0; //return ingredient to the initial position
   } else if (player.crashWith(tomato) && tomato.y > 0) {
+    collisionAudio.play()
     myGameArea.scoreCountTomato++;
     tomato.y = 0;
   } else if (player.crashWith(tabasco) && tabasco.y > 0) {
+    collisionAudio.play()
     myGameArea.scoreCountTabasco++;
     tabasco.y = 0;
   } else if (player.crashWith(saltPepper) && saltPepper.y > 0) {
+    collisionAudio.play()
     myGameArea.scoreCountSaltPepper++;
     saltPepper.y = 0;
   } else if (player.crashWith(lemon) && lemon.y > 0) {
+    collisionAudio.play()
     myGameArea.scoreCountLemon++;
     lemon.y = 0;
   }
 }
 
+const gameOverSound = new Audio;
+gameOverSound.src = './audio/game-over-sound.wav';
+
+
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
     gameStatus = "Game Over";
     myGameArea.stop();
+    gameAudio.pause();
+    gameOverSound.play();
     document.getElementById("game-over-container").style.display = "flex";
   } else {
     checkScore();
@@ -261,4 +285,5 @@ document.getElementById('restart-button').addEventListener('click', () => {
 
 
 myGameArea.start(); 
+
 
