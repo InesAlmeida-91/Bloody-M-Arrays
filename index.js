@@ -22,7 +22,6 @@ const myGameArea = {
     this.canvas.width = 1450;
     this.canvas.height = 700;
     this.context = this.canvas.getContext('2d');
-    gameOverScreen.style.display = "none";
   },
   clear: function () {
     this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -39,19 +38,20 @@ const myGameArea = {
     const rectX = 5;
     const rectY = 5;
     const rectWidth = 260;
-    const rectHeight = 250;
+    const rectHeight = 300;
     
     this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
     this.context.fillRect(rectX, rectY, rectWidth, rectHeight);
   
     // Set the fill color for the text
     this.context.fillStyle = '#ff8585';
-  
-    this.context.fillText(`Vodka: ${this.scoreCountVodka}`, rectX + 10, rectY + 30);
-    this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, rectX + 10, rectY + 80);
-    this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
-    this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 180);
-    this.context.fillText(`Lemons: ${this.scoreCountLemon}`, rectX + 10, rectY + 230);
+
+    this.context.fillText(`Ingredients:`, rectX + 10, rectY + 30); //change color
+    this.context.fillText(`Vodka ${this.scoreCountVodka}`, rectX + 10, rectY + 80);
+    this.context.fillText(`Tomatoes ${this.scoreCountTomato}`, rectX + 10, rectY + 130);
+    this.context.fillText(`Tabasco ${this.scoreCountTabasco}`, rectX + 10, rectY + 180);
+    this.context.fillText(`Salt&Pepper ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 230);
+    this.context.fillText(`Lemons ${this.scoreCountLemon}`, rectX + 10, rectY + 280);
   }
 
 };
@@ -226,7 +226,7 @@ function updateGameArea() {
   myGameArea.score();
 }
 
-myGameArea.start(); 
+
 
 function checkGameOver() {
   if(player.crashWith(orange) || player.crashWith(strawberry)) {
@@ -236,20 +236,9 @@ function checkGameOver() {
   }
 }
 
-
-function checkScore() {
-  if(player.crashWith(vodka)) {
-    myGameArea.scoreCountVodka++;
-  }else if(player.crashWith(tomato)){
-    myGameArea.scoreCountTomato++;
-  }else if(player.crashWith(tabasco)){
-    myGameArea.scoreCountTabasco++;
-  }else if(player.crashWith(saltPepper)){
-      myGameArea.scoreCountSaltPepper++;
-  }else if(player.crashWith(lemon)){
-    myGameArea.scoreCountLemon++;
-  }
-}
+document.getElementById('restart-button').addEventListener('click', () => {
+  location.reload();
+});
 
 
 function checkScore() {
@@ -266,4 +255,7 @@ function checkScore() {
   }
 }
 
+
+
+myGameArea.start(); 
 
