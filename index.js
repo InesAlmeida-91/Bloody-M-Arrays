@@ -223,6 +223,7 @@ function updateGameArea() {
   myGameArea.score();
   }
   checkGameOver();
+  myGameArea.score();
 }
 
 
@@ -256,5 +257,5 @@ function checkScore() {
 
 
 
-
 myGameArea.start(); 
+
