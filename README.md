@@ -1,7 +1,7 @@
 # BLOODY-M-ARRAYS
 
 
-Play the Game: (https://inesalmeida-91.github.io/Bloody-M-Arrays/)
+Play the Game: https://inesalmeida-91.github.io/Bloody-M-Arrays/
 
 
 ## Description:
@@ -42,5 +42,5 @@ The game ends when players catch a wrong ingredient, that doesn't belong to the 
 
 ## Links
 - [Trello Link](https://trello.com/b/mKUR0mgp/bloody-m-arrays)
-- [Slides Link](http://slides.com)
+- [Slides Link] (https://docs.google.com/presentation/d/1WoYhqSFq85X33xyZM2wKt_JLjszvnpiXasR3e7Wgp98/edit?usp=sharing)
 - [Github repository Link](https://github.com/InesAlmeida-91/Bloody-M-Arrays) 
