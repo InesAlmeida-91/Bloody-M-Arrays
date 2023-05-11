@@ -1,7 +1,7 @@
 # BLOODY-M-ARRAYS
 
 
-[Click here to see deployed game] (https://inesalmeida-91.github.io/Bloody-M-Arrays/)
+Play the Game: (https://inesalmeida-91.github.io/Bloody-M-Arrays/)
 
 
 ## Description:
@@ -24,15 +24,15 @@ The game ends when players catch a wrong ingredient, that doesn't belong to the 
 - canvas adjusting depending on screen size
 
 ## Data structure
--function startGame()
--function completeCocktail()
--Object myGameArea with methods start, clear, stop, score
--Class Person with draw(), moveLeft(), moveRight(), newPos(), update(), top(), left(), right() and crashWith(ingredient) methods
--Class CorrectIngredient and class IncorrectIngredient with the  update() and bottom() methods
--function updateGameArea()
--function checkScore()
--function checkGameOver()
--function checkWin() 
+- function startGame()
+- function completeCocktail()
+- Object myGameArea with methods start, clear, stop, score
+- Class Person with draw(), moveLeft(), moveRight(), newPos(), update(), top(), left(), right() and crashWith(ingredient) methods
+- Class CorrectIngredient and class IncorrectIngredient with the  update() and bottom() methods
+- function updateGameArea()
+- function checkScore()
+- function checkGameOver()
+- function checkWin() 
 
 ## States
 - Start Screen
