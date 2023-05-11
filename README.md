@@ -1,7 +1,7 @@
 # BLOODY-M-ARRAYS
 
 
-Play the Game: (https://inesalmeida-91.github.io/Bloody-M-Arrays/)
+Play the Game: https://inesalmeida-91.github.io/Bloody-M-Arrays/
 
 
 ## Description:
