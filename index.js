@@ -103,13 +103,13 @@ class Person {
   
   moveLeft() {
     if (this.x >= 0) {
-    this.x -= 20;
+    this.x -= 30;
     }
   }
   
   moveRight() {
     if(this.x <= 1350) {
-      this.x += 20;
+      this.x += 30;
     }
   }
   
@@ -286,10 +286,10 @@ winningSound.src = './audio/winning-cheering.wav';
 function checkWin() {
   if(
     myGameArea.scoreCountVodka >= 2 &&
-    myGameArea.scoreCountTomato >= 4 &&
-    myGameArea.scoreCountTabasco >= 3 &&
-    myGameArea.scoreCountLemon >= 1 &&
-    myGameArea.scoreCountSaltPepper >= 1 
+    myGameArea.scoreCountTomato >= 2 &&
+    myGameArea.scoreCountTabasco >= 2 &&
+    myGameArea.scoreCountLemon >= 2 &&
+    myGameArea.scoreCountSaltPepper >= 2 
     ) {
     gameStatus = "Win Game";
     myGameArea.stop();
