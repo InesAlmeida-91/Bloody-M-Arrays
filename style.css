@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Sigmar&display=swap');
-  @import url('https://fonts.googleapis.com/css2?family=Mulish&family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Mulish&family=Nunito&display=swap');
 
 body {
     font-family: 'Sigmar';
@@ -82,7 +82,7 @@ p {
     padding: 10px 20px;
   }
 
-  #restart-button {
+#restart-button {
     width: 50%;
     height: 70px;
     border-radius: 30px; 
@@ -97,7 +97,7 @@ p {
     font-family: 'Sigmar';
   }
 
-  #restart-button:hover {
+#restart-button:hover {
     background-color: #f15b5b;
 }
 
@@ -113,7 +113,7 @@ p {
     justify-content: center;
   }
   
-  #game-over-screen {
+#game-over-screen {
     text-align: center;
   }
 
@@ -129,7 +129,7 @@ p {
     justify-content: center;
   }
 
-  #win-screen {
+#win-screen {
     text-align: center;
   }
   
@@ -147,6 +147,6 @@ p {
     font-family: 'Sigmar';
   }
 
-  #play-again-button:hover {
+#play-again-button:hover {
     background-color: #f15b5b;
 }

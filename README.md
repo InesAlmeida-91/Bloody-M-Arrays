@@ -1,8 +1,6 @@
 # BLOODY-M-ARRAYS
 
-
 Play the Game: https://inesalmeida-91.github.io/Bloody-M-Arrays/
-
 
 ## Description:
 BLOODY-M-ARRAYS is a game where players use the left/right arrow keys to gather all the correct cocktail ingredients and avoid the wrong one's,  as they fall from the sky.
