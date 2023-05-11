@@ -14,11 +14,32 @@ gameAudio.src = './audio/game-music.mp3'
 
 startAudio.play();
 
+
+let randomNumber;
+
 function startGame() {
   const instructionsContainer = document.getElementById('instructions-container')
   instructionsContainer.style.display = "none";
   document.body.insertBefore(myGameArea.canvas, document.body.childNodes[0]);
   myGameArea.interval = setInterval(updateGameArea, 20);
+  randomNumber = Math.floor(Math.random() * 10) + 1;
+}
+
+let completedCocktails = 0;
+
+function completeCocktail() {
+  if (myGameArea.scoreCountVodka === 1 &&
+  myGameArea.scoreCountTomato === 1 && 
+  myGameArea.scoreCountTabasco === 1 &&
+  myGameArea.scoreCountLemon === 1 &&
+  myGameArea.scoreCountSaltPepper === 1) {
+  completedCocktails ++;
+  myGameArea.scoreCountVodka = 0;
+  myGameArea.scoreCountTomato = 0;
+  myGameArea.scoreCountTabasco = 0;
+  myGameArea.scoreCountLemon = 0;
+  myGameArea.scoreCountSaltPepper = 0;
+  }
 }
 
 const myGameArea = {
@@ -65,11 +86,33 @@ const myGameArea = {
     this.context.fillText(`Tabasco: ${this.scoreCountTabasco}`, rectX + 10, rectY + 130);
     this.context.fillText(`Salt&Pepper: ${this.scoreCountSaltPepper}`, rectX + 10, rectY + 160);
     this.context.fillText(`Lemons: ${this.scoreCountLemon}`, rectX + 10, rectY + 190);
+
+    
+  // Add rectangles for the number of cocktails done and to do
+  const doneRectX = rectX + rectWidth + 950;
+  const doneRectY = rectY + 50;
+  const doneRectWidth = 250;
+  const doneRectHeight = 30;
+
+  const toDoRectX = rectX + rectWidth + 950;
+  const toDoRectY = rectY + 10;
+  const toDoRectWidth = 250;
+  const toDoRectHeight = 30;
+
+  // Set the fill color for the rectangles
+  this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
+  this.context.fillRect(doneRectX, doneRectY, doneRectWidth, doneRectHeight);
+
+  this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
+  this.context.fillRect(toDoRectX, toDoRectY, toDoRectWidth, toDoRectHeight);
+
+  // Set the fill color for the text inside the rectangles
+  this.context.fillStyle = 'white';
+  this.context.fillText(`Cocktails done: ${completedCocktails}`, doneRectX + 10, doneRectY + 20);
+  this.context.fillText(`Ordered cocktails: ${randomNumber}`, toDoRectX + 10, toDoRectY + 20);
   }
 
 };
-
-
 
 
 const beachBackground = new Image();
@@ -103,13 +146,13 @@ class Person {
   
   moveLeft() {
     if (this.x >= 0) {
-    this.x -= 20;
+    this.x -= 30;
     }
   }
   
   moveRight() {
     if(this.x <= 1350) {
-      this.x += 20;
+      this.x += 30;
     }
   }
   
@@ -231,10 +274,12 @@ function updateGameArea() {
     orange.update();
     strawberry.update();
     myGameArea.score();
-     checkScore();
+    checkScore();
+    completeCocktail();
   }
   checkGameOver();
   checkWin();
+  myGameArea.score()
 }
 
 const collisionAudio = new Audio;
@@ -284,13 +329,7 @@ const winningSound = new Audio;
 winningSound.src = './audio/winning-cheering.wav';
 
 function checkWin() {
-  if(
-    myGameArea.scoreCountVodka >= 2 &&
-    myGameArea.scoreCountTomato >= 4 &&
-    myGameArea.scoreCountTabasco >= 3 &&
-    myGameArea.scoreCountLemon >= 1 &&
-    myGameArea.scoreCountSaltPepper >= 1 
-    ) {
+  if(randomNumber === completedCocktails) {
     gameStatus = "Win Game";
     myGameArea.stop();
     gameAudio.pause();
