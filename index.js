@@ -23,7 +23,7 @@ function startGame() {
   instructionsContainer.style.display = "none";
   document.body.insertBefore(myGameArea.canvas, document.body.childNodes[0]);
   myGameArea.interval = setInterval(updateGameArea, 20);
-  randomNumber = Math.floor(Math.random() * 2) + 1;
+  randomNumber = Math.floor(Math.random() * 5) + 1;
 }
 
 let completedCocktails = 0;

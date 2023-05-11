@@ -11,6 +11,7 @@ The game ends when players catch a wrong ingredient, that doesn't belong to the 
 
  ## Instructions:
  Using the left/right arrow keys to collect all the correct ingredients. The player needs to avoid the wrong ingredients.
+ The player has to match the number of cocktails made with the orders
 
 ## MVP - MVP definition here, list of minimum features
 - Ingredients fall from the sky and players moves across the game by clicking left and right arrow keys.
