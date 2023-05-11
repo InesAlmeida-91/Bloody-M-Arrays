@@ -1,7 +1,3 @@
-const startAudio = new Audio('./audio/fisrt-screen-sound.wav');
-
-const gameAudio = new Audio;
-gameAudio.src = './audio/game-music.mp3'
 
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
@@ -11,6 +7,11 @@ window.onload = () => {
   };
 }
 
+const startAudio = new Audio;
+startAudio.scr = './audio/fisrt-screen-sound.wav'
+
+const gameAudio = new Audio;
+gameAudio.src = './audio/game-music.mp3'
 
 
 startAudio.play();
@@ -23,7 +24,7 @@ function startGame() {
   instructionsContainer.style.display = "none";
   document.body.insertBefore(myGameArea.canvas, document.body.childNodes[0]);
   myGameArea.interval = setInterval(updateGameArea, 20);
-  randomNumber = Math.floor(Math.random() * 2) + 1;
+  randomNumber = Math.floor(Math.random() * 5) + 1;
 }
 
 let completedCocktails = 0;
