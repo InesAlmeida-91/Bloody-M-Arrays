@@ -5,7 +5,7 @@
 
 
 ## Description:
-- BLOODY-M-ARRAYS is a game where players try to gather all the correct cocktail ingredients as they fall from the sky.
+BLOODY-M-ARRAYS is a game where players try to gather all the correct cocktail ingredients as they fall from the sky.
 To win the player needs to match the number of cocktails ordered and the number of cocktails made.
 The game ends when players catch a wrong ingredient, that doesn't belong to the cocktail.
 
