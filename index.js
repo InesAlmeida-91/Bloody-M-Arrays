@@ -1,3 +1,8 @@
+const startAudio = new Audio('./audio/fisrt-screen-sound.wav');
+
+const gameAudio = new Audio;
+gameAudio.src = './audio/game-music.mp3'
+
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
     startAudio.pause();
@@ -6,11 +11,7 @@ window.onload = () => {
   };
 }
 
-const startAudio = new Audio;
-startAudio.src = './audio/fisrt-screen-sound.wav';
 
-const gameAudio = new Audio;
-gameAudio.src = './audio/game-music.mp3'
 
 startAudio.play();
 
@@ -22,23 +23,23 @@ function startGame() {
   instructionsContainer.style.display = "none";
   document.body.insertBefore(myGameArea.canvas, document.body.childNodes[0]);
   myGameArea.interval = setInterval(updateGameArea, 20);
-  randomNumber = Math.floor(Math.random() * 10) + 1;
+  randomNumber = Math.floor(Math.random() * 2) + 1;
 }
 
 let completedCocktails = 0;
 
 function completeCocktail() {
-  if (myGameArea.scoreCountVodka === 1 &&
-  myGameArea.scoreCountTomato === 1 && 
-  myGameArea.scoreCountTabasco === 1 &&
-  myGameArea.scoreCountLemon === 1 &&
-  myGameArea.scoreCountSaltPepper === 1) {
+  if (myGameArea.scoreCountVodka >= 1 &&
+  myGameArea.scoreCountTomato >= 1 && 
+  myGameArea.scoreCountTabasco >= 1 &&
+  myGameArea.scoreCountLemon >= 1 &&
+  myGameArea.scoreCountSaltPepper >= 1) {
   completedCocktails ++;
-  myGameArea.scoreCountVodka = 0;
-  myGameArea.scoreCountTomato = 0;
-  myGameArea.scoreCountTabasco = 0;
-  myGameArea.scoreCountLemon = 0;
-  myGameArea.scoreCountSaltPepper = 0;
+  myGameArea.scoreCountVodka -= 1;
+  myGameArea.scoreCountTomato -= 1;
+  myGameArea.scoreCountTabasco -= 1;
+  myGameArea.scoreCountLemon -= 1;
+  myGameArea.scoreCountSaltPepper -= 1;
   }
 }
 
