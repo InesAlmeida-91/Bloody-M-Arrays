@@ -28,11 +28,11 @@ function startGame() {
 let completedCocktails = 0;
 
 function completeCocktail() {
-  if (myGameArea.scoreCountVodka === 1 &&
-  myGameArea.scoreCountTomato === 1 && 
-  myGameArea.scoreCountTabasco === 1 &&
-  myGameArea.scoreCountLemon === 1 &&
-  myGameArea.scoreCountSaltPepper === 1) {
+  if (myGameArea.scoreCountVodka >= 1 &&
+  myGameArea.scoreCountTomato >= 1 && 
+  myGameArea.scoreCountTabasco >= 1 &&
+  myGameArea.scoreCountLemon >= 1 &&
+  myGameArea.scoreCountSaltPepper >= 1) {
   completedCocktails ++;
   myGameArea.scoreCountVodka = 0;
   myGameArea.scoreCountTomato = 0;
