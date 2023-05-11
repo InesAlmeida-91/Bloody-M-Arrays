@@ -1,7 +1,3 @@
-const startAudio = new Audio('./audio/fisrt-screen-sound.wav');
-
-const gameAudio = new Audio;
-gameAudio.src = './audio/game-music.mp3'
 
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
@@ -11,6 +7,11 @@ window.onload = () => {
   };
 }
 
+const startAudio = new Audio;
+startAudio.scr = './audio/fisrt-screen-sound.wav'
+
+const gameAudio = new Audio;
+gameAudio.src = './audio/game-music.mp3'
 
 
 startAudio.play();
