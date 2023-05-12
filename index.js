@@ -1,19 +1,12 @@
-const startAudio = new Audio;
-startAudio.scr = './audio/fisrt-screen-sound.wav'
-
-const gameAudio = new Audio;
-gameAudio.src = './audio/game-music.mp3'
-
 window.onload = () => {
   document.getElementById('start-button').onclick = () => {
-    startAudio.pause();
     gameAudio.play();
     startGame()  
   };
 }
 
-startAudio.play();
-
+const gameAudio = new Audio;
+gameAudio.src = './audio/game-music.mp3'
 
 let randomNumber;
 
