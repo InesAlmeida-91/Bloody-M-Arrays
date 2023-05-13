@@ -67,12 +67,9 @@ const myGameArea = {
     this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
     this.context.fillRect(rectX, rectY, rectWidth, rectHeight);
   
-   
-     // Set the fill color for the text
     this.context.fillStyle = 'white';
     this.context.fillText(`Ingredients:`, rectX + 10, rectY + 30);
 
-     // Set the fill color for the text
     this.context.fillStyle = '#ff8585';
     this.context.fillText(`Vodka: ${this.scoreCountVodka}`, rectX + 10, rectY + 70);
     this.context.fillText(`Tomatoes: ${this.scoreCountTomato}`, rectX + 10, rectY + 100);
@@ -81,7 +78,6 @@ const myGameArea = {
     this.context.fillText(`Lemons: ${this.scoreCountLemon}`, rectX + 10, rectY + 190);
 
     
-    // Add rectangles for the number of cocktails done and to do
     const doneRectX = rectX + rectWidth + 950;
     const doneRectY = rectY + 50;
     const doneRectWidth = 250;
@@ -92,14 +88,12 @@ const myGameArea = {
     const toDoRectWidth = 250;
     const toDoRectHeight = 30;
 
-    // Set the fill color for the rectangles
     this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
     this.context.fillRect(doneRectX, doneRectY, doneRectWidth, doneRectHeight);
 
     this.context.fillStyle = 'rgba(255, 255, 255, 0.85)';
     this.context.fillRect(toDoRectX, toDoRectY, toDoRectWidth, toDoRectHeight);
 
-    // Set the fill color for the text inside the rectangles
     this.context.fillStyle = 'white';
     this.context.fillText(`Cocktails done: ${completedCocktails}`, doneRectX + 10, doneRectY + 20);
     this.context.fillText(`Ordered cocktails: ${randomNumber}`, toDoRectX + 10, toDoRectY + 20);
@@ -279,9 +273,9 @@ collisionAudio.src = './audio/ingredient-collision.wav';
 
 function checkScore() {
   if (player.crashWith(vodka) && vodka.y > 0) { 
-    collisionAudio.play()//ingredient.y vertical position of the image 
-    myGameArea.scoreCountVodka++;//increase the score
-    vodka.y = 0; //return ingredient to the initial position
+    collisionAudio.play()
+    myGameArea.scoreCountVodka++;
+    vodka.y = 0;
   } else if (player.crashWith(tomato) && tomato.y > 0) {
     collisionAudio.play()
     myGameArea.scoreCountTomato++;
